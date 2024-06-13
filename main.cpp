@@ -1,3 +1,8 @@
+//Declaración de clases header
+
+#ifndef video_h
+#define video_h
+
 #include <iostream>
 using namespace std;
 #include <string>
@@ -12,3 +17,4 @@ class Video {
 };
 
 
+#endif 
