@@ -15,7 +15,12 @@ class Video {
     string genero;
     double calificacion;
 
-};
+    //Constructor de la clase
+    Video(string id, string titulo, string genero, double calificacion);
 
+    //Aquí iran las funciones generales
+    void calificar(double NewCalificacion)
+    
+};
 
 #endif 
