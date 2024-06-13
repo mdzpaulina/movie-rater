@@ -8,7 +8,7 @@ class Video {
     string titulo;
     string genero;
     double calificacion;
-
+    int duracion;
 };
 
 
