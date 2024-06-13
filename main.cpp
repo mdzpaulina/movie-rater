@@ -1,7 +1,14 @@
 #include <iostream>
 using namespace std;
-int main(){
-    int a;
-    
-    return 0;
-}
+#include <string>
+
+class Video {
+    public:
+    string id;
+    string titulo;
+    string genero;
+    double calificacion;
+
+};
+
+
