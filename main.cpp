@@ -8,6 +8,7 @@ using namespace std;
 #include <string>
 
 class Video {
+    //Atributos
     public:
     string id;
     string titulo;
