@@ -4,7 +4,7 @@
 using namespace std;
 
 void mostrarMenu() {
-    cout << "\nMenu de Opciones:\n";
+    cout << "Menu de Opciones:\n";
     cout << "1. Agregar video\n";
     cout << "2. Mostrar los videos en general con una cierta calificación o de un cierto género\n";
     cout << "3. Mostrar los episodios de una determinada serie con una calificación determinada\n";
@@ -22,22 +22,22 @@ int main() {
     int numEpisodios, temporada;
 
     // Agregar Peliculas
-    plataforma.AgregarPelicula(Pelicula("001", "John Wick 4", "Accion", 170, 1));
-    plataforma.AgregarPelicula(Pelicula("002", "La La Land", "Drama", 129, 1));
-    plataforma.AgregarPelicula(Pelicula("003", "Fight Club", "Drama", 139, 1));
+    plataforma.AgregarPelicula(new Pelicula("001", "John Wick 4", "Accion", 170, 1));
+    plataforma.AgregarPelicula(new Pelicula("002", "La La Land", "Drama", 129, 1));
+    plataforma.AgregarPelicula(new Pelicula("003", "Fight Club", "Drama", 139, 1));
 
     // Agregar Series
-    plataforma.AgregarSerie(Serie("0001", "Hora De Aventura", "Aventura", 0, 1, 3, {
+    plataforma.AgregarSerie(new Serie("0001", "Hora De Aventura", "Aventura", 0, 1, 3, {
         Episodio("E001", "Fionna and Cake", 1, 22, 1),
         Episodio("E002", "Incendium", 1, 22, 1),
         Episodio("E003", "The Lich", 1, 22, 1)
     }));
-    plataforma.AgregarSerie(Serie("0002", "Gravity Falls", "Misterio", 0, 1, 3, {
+    plataforma.AgregarSerie(new Serie("0002", "Gravity Falls", "Misterio", 0, 1, 3, {
         Episodio("E001", "Fight Fighters", 1, 23, 1),
         Episodio("E002", "Not What He Seems", 1, 23, 1),
         Episodio("E003", "A Tale of Two Stans", 1, 23, 1)
     }));
-    plataforma.AgregarSerie(Serie("0003", "Stranger Things", "Ciencia Ficcion", 0, 1, 3, {
+    plataforma.AgregarSerie(new Serie("0003", "Stranger Things", "Ciencia Ficcion", 0, 1, 3, {
         Episodio("E001", "The Vanishing of Will Byers", 1, 47, 1),
         Episodio("E002", "The Weirdo on Maple Street", 1, 55, 1),
         Episodio("E003", "Holly Jolly", 1, 51, 1)
@@ -65,7 +65,7 @@ int main() {
                 cin >> duracion;
                 cout << "Ingrese la Calificación: ";
                 cin >> calificacion;
-                plataforma.AgregarPelicula(Pelicula(id, titulo, genero, duracion, calificacion));
+                plataforma.AgregarPelicula(new Pelicula(id, titulo, genero, duracion, calificacion));
             } else if (tipo == 2) {
                 cout << "Ingrese el ID de la serie: ";
                 cin >> id;
@@ -91,7 +91,7 @@ int main() {
                     cin >> calificacion;
                     episodios.push_back(Episodio(id, episodioTitulo, temporada, duracion, calificacion));
                 }
-                plataforma.AgregarSerie(Serie(id, titulo, genero, 0, 0, numEpisodios, episodios));
+                plataforma.AgregarSerie(new Serie(id, titulo, genero, 0, 0, numEpisodios, episodios));
             }
             break;
 
@@ -137,7 +137,7 @@ int main() {
 
         case 0:
             // Opción para salir
-            cout << "Saliendo del menu, ¡gracias!\n";
+            cout << "Saliendo...\n";
             break;
 
         default:

@@ -1,5 +1,5 @@
-#ifndef DECLARACION_H
-#define DECLARACION_H
+#ifndef declaracion_h
+#define declaracion_h
 
 #include <iostream>
 #include <string>
@@ -29,19 +29,15 @@ public:
     void MostrarDatos() override;
 };
 
-class Episodio {
+class Episodio : public Video {
 public:
-    string id;
-    string titulo;
     int temporada;
-    int duracion;
-    double calificacion;
-    int numCalificaciones;
 
     Episodio(string id, string titulo, int temporada, int duracion, double calificacion);
-    void MostrarDatos();
-    void calificar(double newCalificacion);
-    double obtenerPromedioCalificacion();
+
+    void MostrarDatos() override;
+    void calificar(double newCalificacion) override;
+    double obtenerPromedioCalificacion() override;
 };
 
 class Serie : public Video {
@@ -50,6 +46,7 @@ public:
     vector<Episodio> listaEpisodios;
 
     Serie(string id, string titulo, string genero, int duracion, double calificacion, int episodios, vector<Episodio> listaEpisodios);
+
     void MostrarDatos() override;
     void calificar(double newCalificacion) override;
     double obtenerPromedioCalificacion() override;
@@ -58,17 +55,17 @@ public:
 class Plataforma {
 public:
     vector<Video*> videos;
-    vector<Pelicula> peliculas;
-    vector<Serie> series;
+    vector<Pelicula*> peliculas;
+    vector<Serie*> series;
 
     void AgregarVideo(Video* video);
-    void AgregarPelicula(Pelicula pelicula);
-    void AgregarSerie(Serie serie);
-    void MostrarVideos(double calificacion = 0, string genero = "");
-    void MostrarPeliculas(double calificacion = 0, string genero = "");
-    void MostrarSeries(double calificacion = 0, string genero = "");
-    void MostrarEpisodios(string tituloSerie, double calificacion = 0);
+    void AgregarPelicula(Pelicula* pelicula);
+    void AgregarSerie(Serie* serie);
+    void MostrarVideos(double calificacion, string genero);
+    void MostrarPeliculas(double calificacion, string genero);
+    void MostrarSeries(double calificacion, string genero);
+    void MostrarEpisodios(string tituloSerie, double calificacion);
     void CalificarVideo(string titulo, double nuevaCalificacion);
 };
 
-#endif // DECLARACION_H
+#endif

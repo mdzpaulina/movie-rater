@@ -41,7 +41,7 @@ void Pelicula::MostrarDatos() {
 
 // Constructor de la clase Episodio
 Episodio::Episodio(string id, string titulo, int temporada, int duracion, double calificacion)
-    : id(id), titulo(titulo), temporada(temporada), duracion(duracion), calificacion(calificacion), numCalificaciones(1) {}
+    : Video(id, titulo, "", duracion, calificacion), temporada(temporada) {}
 
 // Método para mostrar los datos de un episodio
 void Episodio::MostrarDatos() {
@@ -99,29 +99,29 @@ void Plataforma::AgregarVideo(Video* video) {
 }
 
 // Método para agregar una película a la plataforma
-void Plataforma::AgregarPelicula(Pelicula pelicula) {
+void Plataforma::AgregarPelicula(Pelicula* pelicula) {
     peliculas.push_back(pelicula);
-    AgregarVideo(&pelicula);  // Agregar al vector de videos
+    AgregarVideo(pelicula);  // Agregar al vector de videos
 }
 
 // Método para agregar una serie a la plataforma
-void Plataforma::AgregarSerie(Serie serie) {
+void Plataforma::AgregarSerie(Serie* serie) {
     series.push_back(serie);
-    AgregarVideo(&serie);  // Agregar al vector de videos
+    AgregarVideo(serie);  // Agregar al vector de videos
 }
 
 // Método para mostrar los videos de la plataforma
 void Plataforma::MostrarVideos(double calificacion, string genero) {
     cout << "Peliculas:\n";
     for (auto& pelicula : peliculas) {
-        if (pelicula.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || pelicula.genero == genero)) {
-            pelicula.MostrarDatos();
+        if (pelicula->obtenerPromedioCalificacion() >= calificacion && (genero.empty() || pelicula->genero == genero)) {
+            pelicula->MostrarDatos();
         }
     }
     cout << "\nSeries:\n";
     for (auto& serie : series) {
-        if (serie.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || serie.genero == genero)) {
-            serie.MostrarDatos();
+        if (serie->obtenerPromedioCalificacion() >= calificacion && (genero.empty() || serie->genero == genero)) {
+            serie->MostrarDatos();
         }
     }
 }
@@ -129,8 +129,8 @@ void Plataforma::MostrarVideos(double calificacion, string genero) {
 // Método para mostrar las películas de la plataforma
 void Plataforma::MostrarPeliculas(double calificacion, string genero) {
     for (auto& pelicula : peliculas) {
-        if (pelicula.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || pelicula.genero == genero)) {
-            pelicula.MostrarDatos();
+        if (pelicula->obtenerPromedioCalificacion() >= calificacion && (genero.empty() || pelicula->genero == genero)) {
+            pelicula->MostrarDatos();
         }
     }
 }
@@ -138,8 +138,8 @@ void Plataforma::MostrarPeliculas(double calificacion, string genero) {
 // Método para mostrar las series de la plataforma
 void Plataforma::MostrarSeries(double calificacion, string genero) {
     for (auto& serie : series) {
-        if (serie.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || serie.genero == genero)) {
-            serie.MostrarDatos();
+        if (serie->obtenerPromedioCalificacion() >= calificacion && (genero.empty() || serie->genero == genero)) {
+            serie->MostrarDatos();
         }
     }
 }
@@ -147,8 +147,8 @@ void Plataforma::MostrarSeries(double calificacion, string genero) {
 // Método para mostrar los episodios de una serie
 void Plataforma::MostrarEpisodios(string tituloSerie, double calificacion) {
     for (auto& serie : series) {
-        if (serie.titulo == tituloSerie) {
-            for (auto& episodio : serie.listaEpisodios) {
+        if (serie->titulo == tituloSerie) {
+            for (auto& episodio : serie->listaEpisodios) {
                 if (episodio.obtenerPromedioCalificacion() >= calificacion) {
                     episodio.MostrarDatos();
                 }
@@ -170,20 +170,6 @@ void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
             video->calificar(nuevaCalificacion);
             cout << "El video " << titulo << " ha sido calificado con " << nuevaCalificacion << endl;
             return;
-        }
-    }
-    for (auto& serie : series) {
-        if (serie.titulo == titulo) {
-            serie.calificar(nuevaCalificacion);
-            cout << "La serie " << titulo << " ha sido calificada con " << nuevaCalificacion << endl;
-            return;
-        }
-        for (auto& episodio : serie.listaEpisodios) {
-            if (episodio.titulo == titulo) {
-                episodio.calificar(nuevaCalificacion);
-                cout << "El episodio " << titulo << " ha sido calificado con " << nuevaCalificacion << endl;
-                return;
-            }
         }
     }
     cout << "Video no encontrado" << endl;
