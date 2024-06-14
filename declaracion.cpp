@@ -34,6 +34,10 @@ Serie::Serie(string id, string titulo, string genero, int duracion, double calif
     episodios = episodios;
 }
 
+//Constructor de la clase Episodio
+Episodio::Episodio(string id, string titulo, int duracion, int temporada, double calificacion) : Video(id, titulo, duracion, calificacion) {
+    temporada = temporada;
+}
 
 //Se repite el metodo MostrarDatos de la clase Video pero para la clase Serie y Pelicula
 
@@ -53,6 +57,15 @@ void Serie::MostrarDatos() {
     cout<<"Genero: "<<genero<<endl;
     cout<<"Calificacion: "<<calificacion<<endl;
     cout<<"Episodios: "<<episodios<<endl;
+}
+
+//Metodo para mostrar los datos de un episodio
+void Episodio::MostrarDatos() {
+    cout<<"ID: "<<id<<endl;
+    cout<<"Titulo: "<<titulo<<endl;
+    cout<<"Temporada: "<<temporada<<endl;
+    cout<<"Duracion: "<<duracion<<endl;
+    cout<<"Calificacion: "<<calificacion<<endl;
 }
 
 //Metodo para agregar un video a la plataforma
