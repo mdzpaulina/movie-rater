@@ -15,10 +15,11 @@ class Video {
     string id;
     string titulo;
     string genero;
+    int duracion;
     double calificacion;
 
     //Constructor de la clase
-    Video(string id, string titulo, string genero, double calificacion);
+    Video(string id, string titulo, string genero, int duracion, double calificacion);
 
     void calificar(double NewCalificacion);
     virtual void MostrarDatos();
@@ -31,7 +32,7 @@ class Pelicula : public Video {
 
     //Constructor de la clase
     //Hereda los atributos de la clase Video 
-    Pelicula(string id, string titulo, string genero, double calificacion);
+    Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
 
     void MostrarDatos() override;
 };
@@ -44,7 +45,18 @@ class Serie : public Video {
 
     //Constructor de la clase 
     //Hereda los atributos de la clase Video 
-    Serie(string id, string titulo, string genero, double calificacion, int episodios);
+    Serie(string id, string titulo, string genero, int duracion, double calificacion, int episodios);
+
+    void MostrarDatos() override;
+};
+
+class Episodio : public Video {
+    //Atributos
+    public:
+    int temporada;
+    //Constructor de la clase
+    //Hereda los atributos de la clase Video
+    Episodio(string id, string titulo, int temporada, int duracion, double calificacion);
 
     void MostrarDatos() override;
 };
@@ -56,7 +68,7 @@ class Plataforma {
 
     //Metodos para filtrar los videos
     void AgregarVideo(Video* video);
-    void MostrarVideos(double calificacion, string enero);
+    void MostrarVideos(double calificacion, string genero);
     void MostrarPeliculas(double calificacion, string genero);
     void MostrarSeries(double calificacion, string genero);  //Sus episodios
 };
