@@ -22,7 +22,7 @@ class Video {
     virtual void MostrarDatos();
 };
 
-/*
+
 class Pelicula : public Video {
     //Atributos
     public:
@@ -33,7 +33,7 @@ class Pelicula : public Video {
 
     void MostrarDatos() override();
 };
-*/
+
 
 class Serie : public Video {
     //Atributos
@@ -46,4 +46,20 @@ class Serie : public Video {
 
     void MostrarDatos() override();
 };
+
+class Plataforma {
+    //Atributos
+    public:
+    vector<Video*> videos;
+
+    //Metodos para filtrar los videos
+    void AgregarVideo(Video* video);
+    void MostrarVideos(double calificacion, string enero);
+    void MostrarPeliculas(double calificacion, string genero);
+    void MostrarSeries(double calificacion, string genero);  //Sus episodios
+};
+
 #endif 
+
+
+
