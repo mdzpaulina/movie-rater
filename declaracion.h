@@ -15,10 +15,11 @@ class Video {
     string id;
     string titulo;
     string genero;
+    int duracion;
     double calificacion;
 
     //Constructor de la clase
-    Video(string id, string titulo, string genero, double calificacion);
+    Video(string id, string titulo, string genero, int duracion, double calificacion);
 
     void calificar(double NewCalificacion);
     virtual void MostrarDatos();
@@ -31,9 +32,7 @@ class Pelicula : public Video {
 
     //Constructor de la clase
     //Hereda los atributos de la clase Video 
-    Pelicula(string id, string titulo, string genero, double calificacion);
-
-    void MostrarDatos() override;
+    Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
 };
 
 
@@ -44,8 +43,7 @@ class Serie : public Video {
 
     //Constructor de la clase 
     //Hereda los atributos de la clase Video 
-    Serie(string id, string titulo, string genero, double calificacion, int episodios);
-
+    Serie(string id, string titulo, string genero, int duracion, double calificacion, int episodios);
     void MostrarDatos() override;
 };
 
