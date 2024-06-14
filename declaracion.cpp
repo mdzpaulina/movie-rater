@@ -1,12 +1,11 @@
 #include "declaracion.h"
 #include <iostream>
-#include <iomanip>
 
 using namespace std;
 
 // Constructor de la clase Video
 Video::Video(string id, string titulo, string genero, int duracion, double calificacion)
-    : id(id), titulo(titulo), genero(genero), duracion(duracion), calificacion(calificacion), numCalificaciones(0) {}
+    : id(id), titulo(titulo), genero(genero), duracion(duracion), calificacion(calificacion), numCalificaciones(1) {}
 
 // Método para calificar un video
 void Video::calificar(double newCalificacion) {
@@ -23,7 +22,7 @@ void Video::MostrarDatos() {
     cout << "Titulo: " << titulo << endl;
     cout << "Genero: " << genero << endl;
     cout << "Duracion: " << duracion << " minutos" << endl;
-    cout << "Calificacion: " << fixed << setprecision(1) << calificacion << endl;
+    cout << "Calificacion: " << calificacion << endl;
 }
 
 // Método para obtener el promedio de calificación de un video
@@ -42,11 +41,11 @@ void Pelicula::MostrarDatos() {
 
 // Constructor de la clase Episodio
 Episodio::Episodio(string id, string titulo, int temporada, int duracion, double calificacion)
-    : id(id), titulo(titulo), temporada(temporada), duracion(duracion), calificacion(calificacion), numCalificaciones(0) {}
+    : id(id), titulo(titulo), temporada(temporada), duracion(duracion), calificacion(calificacion), numCalificaciones(1) {}
 
 // Método para mostrar los datos de un episodio
 void Episodio::MostrarDatos() {
-    cout << "  Episodio: " << titulo << ", Temporada: " << temporada << ", Duracion: " << duracion << " minutos, Calificacion: " << fixed << setprecision(1) << calificacion << endl;
+    cout << "  Episodio: " << titulo << ", Temporada: " << temporada << ", Duracion: " << duracion << " minutos, Calificacion: " << calificacion << endl;
 }
 
 // Método para calificar un episodio
@@ -102,18 +101,27 @@ void Plataforma::AgregarVideo(Video* video) {
 // Método para agregar una película a la plataforma
 void Plataforma::AgregarPelicula(Pelicula pelicula) {
     peliculas.push_back(pelicula);
+    AgregarVideo(&pelicula);  // Agregar al vector de videos
 }
 
 // Método para agregar una serie a la plataforma
 void Plataforma::AgregarSerie(Serie serie) {
     series.push_back(serie);
+    AgregarVideo(&serie);  // Agregar al vector de videos
 }
 
 // Método para mostrar los videos de la plataforma
 void Plataforma::MostrarVideos(double calificacion, string genero) {
-    for (auto& video : videos) {
-        if (video->obtenerPromedioCalificacion() >= calificacion && (genero.empty() || video->genero == genero)) {
-            video->MostrarDatos();
+    cout << "Peliculas:\n";
+    for (auto& pelicula : peliculas) {
+        if (pelicula.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || pelicula.genero == genero)) {
+            pelicula.MostrarDatos();
+        }
+    }
+    cout << "\nSeries:\n";
+    for (auto& serie : series) {
+        if (serie.obtenerPromedioCalificacion() >= calificacion && (genero.empty() || serie.genero == genero)) {
+            serie.MostrarDatos();
         }
     }
 }

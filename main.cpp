@@ -22,14 +22,26 @@ int main() {
     int numEpisodios, temporada;
 
     // Agregar Peliculas
-    plataforma.AgregarPelicula(Pelicula("001", "John_Wick_4", "Accion", 170, 0));
-    plataforma.AgregarPelicula(Pelicula("002", "La_La_Land", "Drama", 129, 0));
-    plataforma.AgregarPelicula(Pelicula("003", "Fight_Club", "Drama", 139, 0));
+    plataforma.AgregarPelicula(Pelicula("001", "John Wick 4", "Accion", 170, 1));
+    plataforma.AgregarPelicula(Pelicula("002", "La La Land", "Drama", 129, 1));
+    plataforma.AgregarPelicula(Pelicula("003", "Fight Club", "Drama", 139, 1));
 
     // Agregar Series
-    plataforma.AgregarSerie(Serie("0001", "Hora_De_Aventura", "Aventura", 0, 0, 3, {Episodio("E001", "Fionna_and_Cake", 1, 22, 0), Episodio("E002", "Incendium", 1, 22, 0), Episodio("E003", "The_Lich", 1, 22, 0)}));
-    plataforma.AgregarSerie(Serie("0002", "Gravity_Falls", "Misterio", 0, 0, 3, {Episodio("E001", "Fight_Fighters", 1, 23, 0), Episodio("E002", "Not_What_He_Seems", 1, 23, 0), Episodio("E003", "A_Tale_of_Two_Stans", 1, 23, 0)}));
-    plataforma.AgregarSerie(Serie("0003", "Stranger_Things", "Ciencia_Ficcion", 0, 0, 3, {Episodio("E001", "The_Vanishing_of_Will_Byers", 1, 47, 0), Episodio("E002", "The_Weirdo_on_Maple_Street", 1, 55, 0), Episodio("E003", "Holly_Jolly", 1, 51, 0)}));
+    plataforma.AgregarSerie(Serie("0001", "Hora De Aventura", "Aventura", 0, 1, 3, {
+        Episodio("E001", "Fionna and Cake", 1, 22, 1),
+        Episodio("E002", "Incendium", 1, 22, 1),
+        Episodio("E003", "The Lich", 1, 22, 1)
+    }));
+    plataforma.AgregarSerie(Serie("0002", "Gravity Falls", "Misterio", 0, 1, 3, {
+        Episodio("E001", "Fight Fighters", 1, 23, 1),
+        Episodio("E002", "Not What He Seems", 1, 23, 1),
+        Episodio("E003", "A Tale of Two Stans", 1, 23, 1)
+    }));
+    plataforma.AgregarSerie(Serie("0003", "Stranger Things", "Ciencia Ficcion", 0, 1, 3, {
+        Episodio("E001", "The Vanishing of Will Byers", 1, 47, 1),
+        Episodio("E002", "The Weirdo on Maple Street", 1, 55, 1),
+        Episodio("E003", "Holly Jolly", 1, 51, 1)
+    }));
 
     do {
         mostrarMenu();

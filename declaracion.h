@@ -18,9 +18,9 @@ public:
 
     Video(string id, string titulo, string genero, int duracion, double calificacion);
 
-    void calificar(double newCalificacion);
+    virtual void calificar(double newCalificacion);
     virtual void MostrarDatos();
-    double obtenerPromedioCalificacion();
+    virtual double obtenerPromedioCalificacion();
 };
 
 class Pelicula : public Video {
