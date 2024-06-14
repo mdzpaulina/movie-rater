@@ -7,7 +7,7 @@ Video::Video(string id, string titulo, string genero, int duracion, double calif
     id=id;
     titulo=titulo;
     genero=genero;
-    int duracion=duracion;
+    duracion=duracion;
     calificacion=calificacion;
 }
 
