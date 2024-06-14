@@ -18,15 +18,17 @@ public:
 
     Video(string id, string titulo, string genero, int duracion, double calificacion);
 
-    virtual void calificar(double newCalificacion);
-    virtual void MostrarDatos();
-    virtual double obtenerPromedioCalificacion();
+    virtual void MostrarDatos() const;
+    virtual double obtenerPromedioCalificacion() const;
+
+    // Sobrecarga del operador += para calificar el video
+    virtual Video& operator+=(double newCalificacion);
 };
 
 class Pelicula : public Video {
 public:
     Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
-    void MostrarDatos() override;
+    void MostrarDatos() const override;
 };
 
 class Episodio : public Video {
@@ -35,9 +37,11 @@ public:
 
     Episodio(string id, string titulo, int temporada, int duracion, double calificacion);
 
-    void MostrarDatos() override;
-    void calificar(double newCalificacion) override;
-    double obtenerPromedioCalificacion() override;
+    void MostrarDatos() const override;
+    double obtenerPromedioCalificacion() const override;
+
+    // Sobrecarga del operador += para calificar el episodio
+    Episodio& operator+=(double newCalificacion) override;
 };
 
 class Serie : public Video {
@@ -47,9 +51,11 @@ public:
 
     Serie(string id, string titulo, string genero, int duracion, double calificacion, int episodios, vector<Episodio> listaEpisodios);
 
-    void MostrarDatos() override;
-    void calificar(double newCalificacion) override;
-    double obtenerPromedioCalificacion() override;
+    void MostrarDatos() const override;
+    double obtenerPromedioCalificacion() const override;
+
+    // Sobrecarga del operador += para calificar la serie
+    Serie& operator+=(double newCalificacion) override;
 };
 
 class Plataforma {

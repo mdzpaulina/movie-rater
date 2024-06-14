@@ -7,17 +7,18 @@ using namespace std;
 Video::Video(string id, string titulo, string genero, int duracion, double calificacion)
     : id(id), titulo(titulo), genero(genero), duracion(duracion), calificacion(calificacion), numCalificaciones(1) {}
 
-// Método para calificar un video
-void Video::calificar(double newCalificacion) {
+// Sobrecarga del operador += para calificar un video
+Video& Video::operator+=(double newCalificacion) {
     if (newCalificacion < 0 || newCalificacion > 5) {
         cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
-        return;
+    } else {
+        calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
     }
-    calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
+    return *this;
 }
 
 // Método para mostrar los datos de un video
-void Video::MostrarDatos() {
+void Video::MostrarDatos() const {
     cout << "ID: " << id << endl;
     cout << "Titulo: " << titulo << endl;
     cout << "Genero: " << genero << endl;
@@ -26,7 +27,7 @@ void Video::MostrarDatos() {
 }
 
 // Método para obtener el promedio de calificación de un video
-double Video::obtenerPromedioCalificacion() {
+double Video::obtenerPromedioCalificacion() const {
     return calificacion;
 }
 
@@ -35,7 +36,7 @@ Pelicula::Pelicula(string id, string titulo, string genero, int duracion, double
     : Video(id, titulo, genero, duracion, calificacion) {}
 
 // Método para mostrar los datos de una película
-void Pelicula::MostrarDatos() {
+void Pelicula::MostrarDatos() const {
     Video::MostrarDatos();
 }
 
@@ -44,21 +45,22 @@ Episodio::Episodio(string id, string titulo, int temporada, int duracion, double
     : Video(id, titulo, "", duracion, calificacion), temporada(temporada) {}
 
 // Método para mostrar los datos de un episodio
-void Episodio::MostrarDatos() {
+void Episodio::MostrarDatos() const {
     cout << "  Episodio: " << titulo << ", Temporada: " << temporada << ", Duracion: " << duracion << " minutos, Calificacion: " << calificacion << endl;
 }
 
-// Método para calificar un episodio
-void Episodio::calificar(double newCalificacion) {
+// Sobrecarga del operador += para calificar un episodio
+Episodio& Episodio::operator+=(double newCalificacion) {
     if (newCalificacion < 0 || newCalificacion > 5) {
         cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
-        return;
+    } else {
+        calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
     }
-    calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
+    return *this;
 }
 
 // Método para obtener el promedio de calificación de un episodio
-double Episodio::obtenerPromedioCalificacion() {
+double Episodio::obtenerPromedioCalificacion() const {
     return calificacion;
 }
 
@@ -67,24 +69,25 @@ Serie::Serie(string id, string titulo, string genero, int duracion, double calif
     : Video(id, titulo, genero, duracion, calificacion), episodios(episodios), listaEpisodios(listaEpisodios) {}
 
 // Método para mostrar los datos de una serie
-void Serie::MostrarDatos() {
+void Serie::MostrarDatos() const {
     Video::MostrarDatos();
     for (auto& episodio : listaEpisodios) {
         episodio.MostrarDatos();
     }
 }
 
-// Método para calificar una serie
-void Serie::calificar(double newCalificacion) {
+// Sobrecarga del operador += para calificar una serie
+Serie& Serie::operator+=(double newCalificacion) {
     if (newCalificacion < 0 || newCalificacion > 5) {
         cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
-        return;
+    } else {
+        calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
     }
-    calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
+    return *this;
 }
 
 // Método para obtener el promedio de calificación de una serie
-double Serie::obtenerPromedioCalificacion() {
+double Serie::obtenerPromedioCalificacion() const {
     double totalCalificacion = 0;
     int totalEpisodios = listaEpisodios.size();
     for (auto& episodio : listaEpisodios) {
@@ -167,7 +170,7 @@ void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
     }
     for (auto& video : videos) {
         if (video->titulo == titulo) {
-            video->calificar(nuevaCalificacion);
+            *video += nuevaCalificacion;
             cout << "El video " << titulo << " ha sido calificado con " << nuevaCalificacion << endl;
             return;
         }
@@ -176,7 +179,7 @@ void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
     for (auto& serie : series) {
         for (auto& episodio : serie->listaEpisodios) {
             if (episodio.titulo == titulo) {
-                episodio.calificar(nuevaCalificacion);
+                episodio += nuevaCalificacion;
                 cout << "El episodio " << titulo << " ha sido calificado con " << nuevaCalificacion << endl;
                 return;
             }
