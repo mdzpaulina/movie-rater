@@ -1,4 +1,0 @@
-ID,Titulo,Duracion,Genero
-001,John_Wick_4,170,Accion
-002,La_La_Land,129,Drama
-003,Fight_Club,139,Drama

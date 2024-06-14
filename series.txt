@@ -1,3 +1,0 @@
-ID,Titulo,Duracion,Genero,episodio1,episodio2,episodio3
-0001,Hora_De_Aventura,Aventura,Fionna_and_Cake,Incendium,The_Lich
-0002,Gravity_Falls,Misterio,Fight_Fighters,Not_What_He_Seems,A_Tale_of_Two_Stans
