@@ -26,6 +26,7 @@ class Video {
 };
 
 
+
 class Pelicula : public Video {
     //Atributos
     public:
@@ -33,8 +34,8 @@ class Pelicula : public Video {
     //Constructor de la clase
     //Hereda los atributos de la clase Video 
     Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
+    void MostrarDatos();
 };
-
 
 class Serie : public Video {
     //Atributos
