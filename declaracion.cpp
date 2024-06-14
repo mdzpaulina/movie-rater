@@ -7,7 +7,7 @@ Video::Video(string id, string titulo, string genero, int duracion, double calif
     id=id;
     titulo=titulo;
     genero=genero;
-    duracion=duracion;
+    int duracion=duracion;
     calificacion=calificacion;
 }
 
@@ -92,6 +92,8 @@ void Plataforma::MostrarPeliculas(double calificacion, string genero) {
 }
 
 //Metodo para mostrar las series de la plataforma
+
+//Lo que se pide es que se muestren las series que tengan una calificacion mayor o igual a la calificacion dada y que sean del genero dado 
 void Plataforma::MostrarSeries(double calificacion, string genero) {
     for (int i = 0; i < videos.size(); i++) {
         if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
