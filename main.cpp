@@ -1,7 +1,7 @@
 //Declaración de clases header
 
-#ifndef video_h
-#define video_h
+#ifndef declaracion_h
+#define declaracion_h
 
 #include <iostream>
 using namespace std;
@@ -19,8 +19,32 @@ class Video {
     Video(string id, string titulo, string genero, double calificacion);
 
     //Aquí iran las funciones generales
-    void calificar(double NewCalificacion)
-    
+    void calificar(double NewCalificacion);
+    virtual void MostrarDatos();
 };
 
+/*
+class Pelicula : public Video {
+    //Atributos
+    public:
+
+    //Constructor de la clase
+    //Hereda los atributos de la clase Video 
+    Pelicula(string id, string titulo, string genero, double calificacion);
+
+    void MostrarDatos() override();
+};
+*/
+
+class Serie : public Video {
+    //Atributos
+    public:
+    int episodios;
+
+    //Constructor de la clase 
+    //Hereda los atributos de la clase Video 
+    Serie(string id, string titulo, string genero, double calificacion, int episodios);
+
+    void MostrarDatos() override();
+};
 #endif 
