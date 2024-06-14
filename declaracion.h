@@ -35,7 +35,6 @@ class Pelicula : public Video {
     Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
 };
 
-
 class Serie : public Video {
     //Atributos
     public:
