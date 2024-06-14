@@ -4,24 +4,23 @@ using namespace std;
 
 //Constructor de la clase Video
 Video::Video(string id, string titulo, string genero, double calificacion) {
-    //El usars this -> es para hacer referencia a los atributos de la clase y de esta forma no confundirlos con los parametros
-    this->id = id;
-    this->titulo = titulo;
-    this->genero = genero;
-    this->calificacion = calificacion;
+    id=id;
+    titulo=titulo;
+    genero=genero;
+    calificacion=calificacion;
 }
 
 //Metodo para calificar un video
 void Video::calificar(double NewCalificacion) {
-    this->calificacion = NewCalificacion;
+    calificacion=NewCalificacion;
 }
 
 //Metodo para mostrar los datos de un video
 void Video::MostrarDatos() {
-    cout << "ID: " << this->id << endl;
-    cout << "Titulo: " << this->titulo << endl;
-    cout << "Genero: " << this->genero << endl;
-    cout << "Calificacion: " << this->calificacion << endl;
+    cout << "ID: " << id << endl;
+    cout << "Titulo: " << titulo << endl;
+    cout << "Genero: " << genero << endl;
+    cout << "Calificacion: " << calificacion << endl;
 }
 
 //Constructor de la clase Pelicula
@@ -30,7 +29,7 @@ Pelicula::Pelicula(string id, string titulo, string genero, double calificacion)
 
 //Constructor de la clase Serie
 Serie::Serie(string id, string titulo, string genero, double calificacion, int episodios) : Video(id, titulo, genero, calificacion) {
-    this->episodios = episodios;
+    episodios = episodios;
 }
 
 
@@ -38,24 +37,50 @@ Serie::Serie(string id, string titulo, string genero, double calificacion, int e
 
 //Metodo para mostrar los datos de una pelicula
 void Pelicula::MostrarDatos() {
-    cout << "ID: " << this->id << endl;
-    cout << "Titulo: " << this->titulo << endl;
-    cout << "Genero: " << this->genero << endl;
-    cout << "Calificacion: " << this->calificacion << endl;
+    cout<<"ID: "<<id<<endl;
+    cout<<"Titulo: "<<titulo<<endl;
+    cout<<"Genero: "<<genero<<endl;
+    cout<<"Calificacion: "<<calificacion<<endl;
 }
 
 //Metodo para mostrar los datos de una serie
 void Serie::MostrarDatos() {
-    cout << "ID: " << this->id << endl;
-    cout << "Titulo: " << this->titulo << endl;
-    cout << "Genero: " << this->genero << endl;
-    cout << "Calificacion: " << this->calificacion << endl;
-    cout << "Episodios: " << this->episodios << endl;
+    cout<<"ID: "<<id<<endl;
+    cout<<"Titulo: "<<titulo<<endl;
+    cout<<"Genero: "<<genero<<endl;
+    cout<<"Calificacion: "<<calificacion<<endl;
+    cout<<"Episodios: "<<episodios<<endl;
 }
 
 //Metodo para agregar un video a la plataforma
 void Plataforma::AgregarVideo(Video* video) {
-    this->videos.push_back(video);
+    videos.push_back(video);
 }
 
 //Metodo para mostrar los videos de la plataforma
+void Plataforma::MostrarVideos(double calificacion, string genero) {
+    for (int i = 0; i < videos.size(); i++) {
+        if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
+            videos[i]->MostrarDatos();
+        }
+    }
+}
+
+//Metodo para mostrar las peliculas de la plataforma
+void Plataforma::MostrarPeliculas(double calificacion, string genero) {
+    for (int i = 0; i < videos.size(); i++) {
+        if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
+            videos[i]->MostrarDatos();
+        }
+    }
+}
+
+//Metodo para mostrar las series de la plataforma
+void Plataforma::MostrarSeries(double calificacion, string genero) {
+    for (int i = 0; i < videos.size(); i++) {
+        if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
+            videos[i]->MostrarDatos();
+        }
+    }
+}
+
