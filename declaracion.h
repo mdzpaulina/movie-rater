@@ -4,8 +4,10 @@
 #define declaracion_h
 
 #include <iostream>
-using namespace std;
 #include <string>
+#include <vector>
+
+using namespace std;
 
 class Video {
     //Atributos
@@ -31,7 +33,7 @@ class Pelicula : public Video {
     //Hereda los atributos de la clase Video 
     Pelicula(string id, string titulo, string genero, double calificacion);
 
-    void MostrarDatos() override();
+    void MostrarDatos() override;
 };
 
 
@@ -44,7 +46,7 @@ class Serie : public Video {
     //Hereda los atributos de la clase Video 
     Serie(string id, string titulo, string genero, double calificacion, int episodios);
 
-    void MostrarDatos() override();
+    void MostrarDatos() override;
 };
 
 class Plataforma {
