@@ -10,6 +10,10 @@ Video::Video(string id, string titulo, string genero, int duracion, double calif
 
 // Método para calificar un video
 void Video::calificar(double newCalificacion) {
+    if (newCalificacion < 0 || newCalificacion > 5) {
+        cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
+        return;
+    }
     calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
 }
 
@@ -47,6 +51,10 @@ void Episodio::MostrarDatos() {
 
 // Método para calificar un episodio
 void Episodio::calificar(double newCalificacion) {
+    if (newCalificacion < 0 || newCalificacion > 5) {
+        cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
+        return;
+    }
     calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
 }
 
@@ -65,6 +73,25 @@ void Serie::MostrarDatos() {
     for (auto& episodio : listaEpisodios) {
         episodio.MostrarDatos();
     }
+}
+
+// Método para calificar una serie
+void Serie::calificar(double newCalificacion) {
+    if (newCalificacion < 0 || newCalificacion > 5) {
+        cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
+        return;
+    }
+    calificacion = ((calificacion * numCalificaciones) + newCalificacion) / (++numCalificaciones);
+}
+
+// Método para obtener el promedio de calificación de una serie
+double Serie::obtenerPromedioCalificacion() {
+    double totalCalificacion = 0;
+    int totalEpisodios = listaEpisodios.size();
+    for (auto& episodio : listaEpisodios) {
+        totalCalificacion += episodio.obtenerPromedioCalificacion();
+    }
+    return totalEpisodios > 0 ? totalCalificacion / totalEpisodios : calificacion;
 }
 
 // Método para agregar un video a la plataforma
@@ -126,6 +153,10 @@ void Plataforma::MostrarEpisodios(string tituloSerie, double calificacion) {
 
 // Método para calificar un video
 void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
+    if (nuevaCalificacion < 0 || nuevaCalificacion > 5) {
+        cout << "Calificación inválida. Debe estar entre 0 y 5." << endl;
+        return;
+    }
     for (auto& video : videos) {
         if (video->titulo == titulo) {
             video->calificar(nuevaCalificacion);
@@ -134,6 +165,11 @@ void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
         }
     }
     for (auto& serie : series) {
+        if (serie.titulo == titulo) {
+            serie.calificar(nuevaCalificacion);
+            cout << "La serie " << titulo << " ha sido calificada con " << nuevaCalificacion << endl;
+            return;
+        }
         for (auto& episodio : serie.listaEpisodios) {
             if (episodio.titulo == titulo) {
                 episodio.calificar(nuevaCalificacion);

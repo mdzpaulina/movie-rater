@@ -51,6 +51,8 @@ public:
 
     Serie(string id, string titulo, string genero, int duracion, double calificacion, int episodios, vector<Episodio> listaEpisodios);
     void MostrarDatos() override;
+    void calificar(double newCalificacion) override;
+    double obtenerPromedioCalificacion() override;
 };
 
 class Plataforma {
