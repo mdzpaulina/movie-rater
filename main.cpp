@@ -4,7 +4,7 @@
 using namespace std;
 
 void mostrarMenu() {
-    cout << "Menu de Opciones:\n";
+    cout << "\nMenu de Opciones:\n";
     cout << "1. Agregar video\n";
     cout << "2. Mostrar los videos en general con una cierta calificación o de un cierto género\n";
     cout << "3. Mostrar los episodios de una determinada serie con una calificación determinada\n";
@@ -137,7 +137,7 @@ int main() {
 
         case 0:
             // Opción para salir
-            cout << "Saliendo...\n";
+            cout << "Saliendo del menu, ¡gracias!\n";
             break;
 
         default:
