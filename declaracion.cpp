@@ -11,6 +11,20 @@ Video::Video(string id, string titulo, string genero, int duracion, double calif
     calificacion=calificacion;
 }
 
+//Metodo para calificar un video
+void Video::calificar(double NewCalificacion) {
+    calificacion=NewCalificacion;
+}
+
+//Metodo para mostrar los datos de un video
+void Video::MostrarDatos() {
+    cout << "ID: " << id << endl;
+    cout << "Titulo: " << titulo << endl;
+    cout << "Genero: " << genero << endl;
+    cout << "Duracion: " << duracion << endl;
+    cout << "Calificacion: " << calificacion << endl;
+}
+
 //Constructor de la clase Pelicula
 Pelicula::Pelicula(string id, string titulo, string genero, int duracion, double calificacion) : Video(id, titulo, genero, duracion, calificacion) {
 }
@@ -25,20 +39,7 @@ Episodio::Episodio(string id, string titulo, int duracion, int temporada, double
     temporada = temporada;
 }
 
-
-//Metodo para calificar un video
-void Video::calificar(double NewCalificacion) {
-    calificacion=NewCalificacion;
-}
-
-//Metodo para mostrar los datos de un video
-void Video::MostrarDatos() {
-    cout<<"ID: "<<id<<endl;
-    cout<<"Titulo: "<<titulo<<endl;
-    cout<<"Genero: "<<genero<<endl;
-    cout<<"Duracion: "<<duracion<<endl;
-    cout<<"Calificacion: "<<calificacion<<endl;
-}
+//Se repite el metodo MostrarDatos de la clase Video pero para la clase Serie y Pelicula
 
 //Metodo para mostrar los datos de una pelicula
 void Pelicula::MostrarDatos() {
@@ -91,6 +92,8 @@ void Plataforma::MostrarPeliculas(double calificacion, string genero) {
 }
 
 //Metodo para mostrar las series de la plataforma
+
+//Lo que se pide es que se muestren las series que tengan una calificacion mayor o igual a la calificacion dada y que sean del genero dado 
 void Plataforma::MostrarSeries(double calificacion, string genero) {
     for (int i = 0; i < videos.size(); i++) {
         if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
@@ -99,33 +102,3 @@ void Plataforma::MostrarSeries(double calificacion, string genero) {
     }
 }
 
-//Metodo para mostrar los episodios de la plataforma
-void Plataforma::MostrarEpisodios(double calificacion, string genero) {
-    for (int i = 0; i < videos.size(); i++) {
-        if (videos[i]->calificacion >= calificacion && videos[i]->genero == genero) {
-            videos[i]->MostrarDatos();
-        }
-    }
-}
-
-//Metodo para calificar un video
-void Plataforma::CalificarVideo(string id, double NewCalificacion) {
-    for (int i = 0; i < videos.size(); i++) {
-        if (videos[i]->id == id) {
-            videos[i]->calificar(NewCalificacion);
-        }
-    }
-}
-
-
-//Metodo para mostrar el menu de opciones
-void Menu() {
-    cout << "Menu de Opciones:\n";
-    cout << "1. Agregar video\n";
-    cout << "2. Mostrar videos con una cierta calificación o de un cierto género\n";
-    cout << "3. Mostrar películas con cierta calificación\n";
-    cout << "4. Mostrar series con cierta calificación\n";
-    cout << "5. Calificar un video\n";
-    cout << "0. Salir\n";
-    cout << "Ingrese una opción: ";
-}
