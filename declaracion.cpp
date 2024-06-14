@@ -172,5 +172,15 @@ void Plataforma::CalificarVideo(string titulo, double nuevaCalificacion) {
             return;
         }
     }
+    // Buscar en los episodios si no se encuentra en los videos principales
+    for (auto& serie : series) {
+        for (auto& episodio : serie->listaEpisodios) {
+            if (episodio.titulo == titulo) {
+                episodio.calificar(nuevaCalificacion);
+                cout << "El episodio " << titulo << " ha sido calificado con " << nuevaCalificacion << endl;
+                return;
+            }
+        }
+    }
     cout << "Video no encontrado" << endl;
 }
