@@ -3,13 +3,8 @@
 using namespace std;
 
 //Constructor de la clase Video
-Video::Video(string id, string titulo, string genero, int duracion, double calificacion) {
-    id=id;
-    titulo=titulo;
-    genero=genero;
-    duracion=duracion;
-    calificacion=calificacion;
-}
+Video::Video(string id, string titulo, string genero, int duracion, double calificacion)
+    : id(id), titulo(titulo), genero(genero), duracion(duracion), calificacion(calificacion) {}
 
 //Metodo para calificar un video
 void Video::calificar(double NewCalificacion) {
@@ -23,6 +18,13 @@ void Video::MostrarDatos() {
     cout << "Genero: " << genero << endl;
     cout << "Duracion: " << duracion << endl;
     cout << "Calificacion: " << calificacion << endl;
+}
+
+// Sobrecarga del operador + para Video
+Video Video::operator+(const Video& other) const {
+    int nuevaDuracion = duracion + other.duracion;
+    double nuevaCalificacion = (calificacion + other.calificacion) / 2;
+    return Video(id + "+" + other.id, titulo + " & " + other.titulo, genero, nuevaDuracion, nuevaCalificacion);
 }
 
 //Constructor de la clase Pelicula
@@ -43,11 +45,7 @@ Episodio::Episodio(string id, string titulo, int duracion, int temporada, double
 
 //Metodo para mostrar los datos de una pelicula
 void Pelicula::MostrarDatos() {
-    cout<<"ID: "<<id<<endl;
-    cout<<"Titulo: "<<titulo<<endl;
-    cout<<"Genero: "<<genero<<endl;
-    cout<<"Duracion: "<<duracion<<endl;
-    cout<<"Calificacion: "<<calificacion<<endl;
+    Video::MostrarDatos();
 }
 
 //Metodo para mostrar los datos de una serie
@@ -102,3 +100,10 @@ void Plataforma::MostrarSeries(double calificacion, string genero) {
     }
 }
 
+// Sobrecarga del operador + para Plataforma
+Plataforma Plataforma::operator+(const Plataforma& other) const {
+    Plataforma result;
+    result.videos = this->videos;  // Copiar los videos de la primera plataforma
+    result.videos.insert(result.videos.end(), other.videos.begin(), other.videos.end());  // Agregar los videos de la segunda plataforma
+    return result;
+}

@@ -23,6 +23,9 @@ class Video {
 
     void calificar(double NewCalificacion);
     virtual void MostrarDatos();
+
+    // Sobrecarga del operador +
+    Video operator+(const Video& other) const;
 };
 
 
@@ -33,6 +36,7 @@ class Pelicula : public Video {
     //Constructor de la clase
     //Hereda los atributos de la clase Video 
     Pelicula(string id, string titulo, string genero, int duracion, double calificacion);
+    void MostrarDatos();
 };
 
 class Serie : public Video {
@@ -68,6 +72,8 @@ class Plataforma {
     void MostrarVideos(double calificacion, string genero);
     void MostrarPeliculas(double calificacion, string genero);
     void MostrarSeries(double calificacion, string genero);  //Sus episodios
+    // Sobrecarga del operador +
+    Plataforma operator+(const Plataforma& other) const;
 };
 
 #endif 
