@@ -61,5 +61,3 @@ class Plataforma {
 
 #endif 
 
-
-
